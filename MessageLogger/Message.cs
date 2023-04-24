@@ -10,14 +10,14 @@ namespace MessageLogger
     {
         public string Content;
         public DateTime CreatedAt;
-        public string formattedTime;
+
 
         public Message(string content)
         {
             Content = content;
             CreatedAt = DateTime.Now;
-            formattedTime = CreatedAt.ToString("h:mm tt");
         }
+
 
 
 
