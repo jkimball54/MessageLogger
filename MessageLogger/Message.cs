@@ -20,17 +20,5 @@ namespace MessageLogger
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
