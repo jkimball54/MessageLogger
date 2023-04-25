@@ -4,14 +4,13 @@
 Console.WriteLine("Welcome to Message Logger!");
 
 
-var userList = new List<User>();
+
+var messageManager = new MessageManager();
 var userInput = "";
-var loggedIn = true;
-
-
 Console.WriteLine("Let's create a user profile for you.");
 User user = CreateUserFromInput();
-userList.Add(user);
+var loggedIn = true;
+messageManager.Users.Add(user);
 
 while(userInput != "quit")
 {
@@ -46,7 +45,7 @@ while(userInput != "quit")
         if (userInput == "new")
         {
             user = CreateUserFromInput();
-            userList.Add(user);
+            messageManager.Users.Add(user);
             loggedIn = true;
         }
 
@@ -55,7 +54,7 @@ while(userInput != "quit")
 
             Console.WriteLine("What is your username?: ");
             userInput = Console.ReadLine();
-            foreach(var existingUser in userList)
+            foreach(var existingUser in messageManager.Users)
             {
 
                 if (existingUser.UserName == userInput)
@@ -70,7 +69,7 @@ while(userInput != "quit")
 
     }
 }
-foreach(var existingUser in userList)
+foreach(var existingUser in messageManager.Users)
 {
     Console.WriteLine($"{existingUser.Name} wrote {existingUser.UserMessages.Count()} messages.");
 }
