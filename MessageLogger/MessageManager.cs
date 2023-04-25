@@ -25,28 +25,31 @@ namespace MessageLogger
             return allMessages;
         }
 
-
-        //figure out cleaner way to do this --- look at list methods c# microsoft
         public List<Message> RecentMessages(int num)
         {
-            List<Message> recentMessages = new List<Message>();
-            int numOfMessages = AllMessages().Count();
+            //New List Containing Most recent messages first
+            List<Message> recentMessages = AllMessages();
+            recentMessages.Reverse();
 
-
-            if (num > numOfMessages)
+            if (num > recentMessages.Count())
             {
-                return AllMessages();
+                return recentMessages;
             }
             else
             {
-                for (int i = 0; i < num; i++)
-                {
-                    recentMessages.Add(AllMessages()[numOfMessages - (i+1)]);
-                }
+                recentMessages = recentMessages.GetRange(0, num);
+                return recentMessages;
             }
-            return recentMessages;
         }
 
-
+        public void PrintTotalMessages()
+        {
+            foreach (var existingUser in Users)
+            {
+                Console.WriteLine($"{existingUser.Name} wrote {existingUser.UserMessages.Count()} messages.");
+            }
+        }
     }
+
 }
+

@@ -60,8 +60,8 @@ namespace MessageLogger.UnitTests
             subsetMessages = messManage1.RecentMessages(1);
 
             //Assert
-            Assert.Equal(test1, allMessages[0]);
-            Assert.Equal(test2, allMessages[1]);
+            Assert.Equal(test1, allMessages[^1]);
+            Assert.Equal(test2, allMessages[^2]);
             Assert.Equal(test2, subsetMessages[0]);
 
         }
