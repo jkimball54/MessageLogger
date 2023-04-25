@@ -25,6 +25,8 @@ namespace MessageLogger
             return allMessages;
         }
 
+
+        //figure out cleaner way to do this --- look at list methods c# microsoft
         public List<Message> RecentMessages(int num)
         {
             List<Message> recentMessages = new List<Message>();

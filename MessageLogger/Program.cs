@@ -8,9 +8,9 @@ Console.WriteLine("Welcome to Message Logger!");
 var messageManager = new MessageManager();
 var userInput = "";
 Console.WriteLine("Let's create a user profile for you.");
-User user = CreateUserFromInput();
+User currentUser = CreateUserFromInput();
 var loggedIn = true;
-messageManager.Users.Add(user);
+messageManager.Users.Add(currentUser);
 
 while(userInput != "quit")
 {
@@ -24,11 +24,11 @@ while(userInput != "quit")
             userInput = Console.ReadLine();
             if (userInput != "quit" && userInput != "log out")
             {
-                user.UserMessages.Add(new Message(userInput));
+                currentUser.UserMessages.Add(new Message(userInput));
             }
-            foreach (var message in user.UserMessages)
+            foreach (var message in currentUser.UserMessages)
             {
-                Console.WriteLine($"{user.Name} {message.CreatedAt.ToShortTimeString()}: {message.Content}");
+                Console.WriteLine($"{currentUser.Name} {message.CreatedAt.ToShortTimeString()}: {message.Content}");
             }
             if(userInput == "log out")
             {
@@ -44,8 +44,8 @@ while(userInput != "quit")
 
         if (userInput == "new")
         {
-            user = CreateUserFromInput();
-            messageManager.Users.Add(user);
+            currentUser = CreateUserFromInput();
+            messageManager.Users.Add(currentUser);
             loggedIn = true;
         }
 
@@ -59,7 +59,7 @@ while(userInput != "quit")
 
                 if (existingUser.UserName == userInput)
                 {
-                    user = existingUser;
+                    currentUser = existingUser;
                     loggedIn = true;
                 }
 
@@ -69,6 +69,8 @@ while(userInput != "quit")
 
     }
 }
+
+//Put in MessageManager Class as Method return void
 foreach(var existingUser in messageManager.Users)
 {
     Console.WriteLine($"{existingUser.Name} wrote {existingUser.UserMessages.Count()} messages.");
@@ -78,7 +80,7 @@ foreach(var existingUser in messageManager.Users)
 
 
 
-
+//Leave here
 static User CreateUserFromInput()
 {
     Console.WriteLine("What is your name?");
@@ -88,3 +90,15 @@ static User CreateUserFromInput()
 
     return new User(name, username);
 }
+
+
+//- Abstraction TODO -
+
+//Put LoggedIn as a bool property somewhere??
+
+//NOT LOGGED IN
+//method for handle new user
+//method for handle existing
+
+//LOGGED IN
+//method for logged in user to add messages (prompt && do while)
