@@ -42,12 +42,29 @@ namespace MessageLogger
             }
         }
 
+        //List All users to console with their total number of messages
         public void PrintTotalMessages()
         {
             foreach (var existingUser in Users)
             {
                 Console.WriteLine($"{existingUser.Name} wrote {existingUser.UserMessages.Count()} messages.");
             }
+        }
+        
+        //Write to console all current users
+        public void ListAllUsers()
+        {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Current Users");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (User user in Users)
+            {
+                Console.WriteLine($"-{user.UserName}");
+            }
+            Console.WriteLine();
         }
     }
 
